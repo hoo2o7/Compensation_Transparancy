@@ -4,6 +4,7 @@ Inference flow per model:  X -> scaler.transform(X) -> model.predict(X_scaled)
 model_A (transparency) outputs ~0..1 -> *100;  model_B (readability) is already ~0..100.
 """
 
+import os
 from pathlib import Path
 from typing import Dict, List
 
@@ -33,9 +34,19 @@ scaler_B = joblib.load(MODEL_DIR / "scaler_B.pkl")
 
 app = FastAPI(title="Compensation Transparency API")
 
+# Local dev origins + any extra origins passed via env (comma-separated).
+# Vercel domains (production + preview deployments) are matched by regex.
+_default_origins = "http://localhost:3000,http://127.0.0.1:3000"
+_allowed_origins = [
+    o.strip()
+    for o in os.getenv("ALLOWED_ORIGINS", _default_origins).split(",")
+    if o.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=_allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_methods=["*"],
     allow_headers=["*"],
 )
