@@ -211,8 +211,8 @@ export function SimulationEngine() {
                 <line x1={padding} y1={padding + plotSize / 2} x2={padding + plotSize} y2={padding + plotSize / 2} stroke="var(--muted-foreground)" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.15" />
                 <line x1={padding + plotSize / 2} y1={padding} x2={padding + plotSize / 2} y2={padding + plotSize} stroke="var(--muted-foreground)" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.15" />
 
-                <text x={padding + plotSize / 2} y={chartSize - 4} fill="var(--muted-foreground)" fontSize="10" fontWeight="bold" textAnchor="middle">Human Readability</text>
-                <text x={4} y={padding + plotSize / 2} fill="var(--muted-foreground)" fontSize="10" fontWeight="bold" textAnchor="middle" transform={`rotate(-90, 4, ${padding + plotSize / 2})`}>Machine Transparency</text>
+                <text x={padding + plotSize / 2} y={chartSize - 4} fill="var(--muted-foreground)" fontSize="10" fontWeight="bold" textAnchor="middle">Readability</text>
+                <text x={4} y={padding + plotSize / 2} fill="var(--muted-foreground)" fontSize="10" fontWeight="bold" textAnchor="middle" transform={`rotate(-90, 4, ${padding + plotSize / 2})`}>AI accuracy</text>
 
                 <text x={padding - 4} y={padding + 4} fill="var(--muted-foreground)" fontSize="9" textAnchor="end">100</text>
                 <text x={padding - 4} y={padding + plotSize + 3} fill="var(--muted-foreground)" fontSize="9" textAnchor="end">0</text>
@@ -231,7 +231,7 @@ export function SimulationEngine() {
 
             <div className="mt-6 flex items-center gap-6 bg-muted/30 px-5 py-3 rounded-xl border border-border/40 font-mono">
               <div className="text-center">
-                <span className="block text-[10px] text-muted-foreground font-sans uppercase font-bold tracking-wider">Transparency (Y)</span>
+                <span className="block text-[10px] text-muted-foreground font-sans uppercase font-bold tracking-wider">AI accuracy (Y)</span>
                 <span className="text-2xl font-bold text-foreground">{Math.round(transparency)}</span>
               </div>
               <div className="h-8 w-px bg-border" />
@@ -252,7 +252,7 @@ export function SimulationEngine() {
             <CardTitle className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               SHAP Contribution Breakdown
             </CardTitle>
-            <span className="text-[11px] text-muted-foreground">vs. baseline &middot; transparency</span>
+            <span className="text-[11px] text-muted-foreground">vs. baseline &middot; AI accuracy</span>
           </CardHeader>
           <CardContent className="space-y-2.5 pt-5">
             {contributions.length === 0 && (
